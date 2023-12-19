@@ -1,0 +1,57 @@
+<div class="row mt-5">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="text-center">Login</h1>
+      </div>
+      <form
+        class="card-body"
+        id="loginForm"
+        #loginForm="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="form-group">
+          <label for="">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            ngModel
+            name="email"
+            required
+            email
+            #email="ngModel"
+            aria-describedby="emailhelpId"
+            placeholder="email"
+          />
+          <small
+            *ngIf="!email?.valid && (email?.dirty || email.touched)"
+            id="emailhelpId"
+            class="form-text text-muted"
+            >Email is invalid</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            ngModel
+            name="password"
+            #password="ngModel"
+            required
+            minlength="6"
+            aria-describedby="passwordhelpId"
+            placeholder="********"
+          />
+          <small
+            *ngIf="!password?.valid && (password?.dirty || password.touched)"
+            id="passwordhelpId"
+            class="form-text text-muted"
+            >Password is invalid</small
+          >
+        </div>
+        <button class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
