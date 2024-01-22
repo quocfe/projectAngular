@@ -1,0 +1,78 @@
+<section id="projectList">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+        <div *ngIf="projects?.length === 0 || !projects" class="m-auto">
+          <h1 *ngIf="projects != undefined">Danh sách trống</h1>
+        </div>
+        <app-project-add
+          (savingFinished)="finishAndAlert($event)"
+        ></app-project-add>
+        <div class="card" *ngIf="projects && projects?.length != 0">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let project of projects">
+                <td class="align-middle">{{ project.name }}</td>
+                <td class="align-middle">{{ project.startDate | date }}</td>
+                <td class="align-middle">{{ project.status }}</td>
+
+                <td class="align-middle d-flex justify-content-around">
+                  <a class="btn btn-success">
+                    <i class="fa-regular fa-eye"></i>
+                  </a>
+                  <app-project-edit
+                    [id]="project._id"
+                    (updateFinished)="finishAndAlert($event)"
+                  ></app-project-edit>
+                  <a
+                    (click)="
+                      confirmDeleteProject(content, project._id, project.name)
+                    "
+                    class="btn btn-danger"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ confirmMessage }}</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="deleteProject()"
+      >
+        Yes
+      </button>
+      <button type="button" class="btn btn-dark" (click)="c('Close click')">
+        No
+      </button>
+    </div>
+  </ng-template>
+</section>

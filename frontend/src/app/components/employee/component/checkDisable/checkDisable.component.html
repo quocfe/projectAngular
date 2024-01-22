@@ -1,0 +1,78 @@
+<section id="taskList">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-10 mx-auto">
+        <app-message></app-message>
+
+        <form
+          #projectAddForm="ngForm"
+          class="card mt-2 overflow-hidden"
+          *ngIf="tasks && tasks?.length != 0"
+        >
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Name task</th>
+                <th>Project</th>
+                <th>Assigned To</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks; let i = index">
+                <td class="align-middle">{{ task.taskName }}</td>
+                <td class="align-middle">{{ task.project || "null" }}</td>
+
+                <td class="align-middle">
+                  <select
+                    class="form-control"
+                    name="employee"
+                    id="employee{{ i }}"
+                    [ngModel]="task.employee"
+                    (ngModelChange)="onEmployeeChange($event, task)"
+                  >
+                    <option *ngFor="let emp of employees" [ngValue]="emp._id">
+                      {{ emp.name }}
+                    </option>
+                  </select>
+                </td>
+
+                <td class="align-middle d-flex justify-content-around">
+                  <a
+                    (click)="confirmDeleteProject(content)"
+                    class="btn btn-primary"
+                  >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Xác nhận bàn giao công việc
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ confirmMessage }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="save()">
+        Yes
+      </button>
+      <button type="button" class="btn btn-dark" (click)="c('Close click')">
+        No
+      </button>
+    </div>
+  </ng-template>
+</section>

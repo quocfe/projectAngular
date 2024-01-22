@@ -1,0 +1,40 @@
+<section id="taskList">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+
+        <div *ngIf="tasks?.length === 0 || !tasks" class="m-auto">
+          <h1 *ngIf="tasks != undefined">Danh sách trống</h1>
+        </div>
+        <button class="btn btn-add mb-3">
+          <a [routerLink]="['/dashboard']">Back</a>
+        </button>
+        <div class="card" *ngIf="tasks && tasks?.length != 0">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Task name</th>
+                <th>Project</th>
+                <th>Employee</th>
+                <th>Status</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks">
+                <td class="align-middle">{{ task.taskName }}</td>
+                <td class="align-middle">{{ task.project.name }}</td>
+                <td class="align-middle">{{ task.employee.name }}</td>
+                <td class="align-middle">{{ task.status }}</td>
+                <td class="align-middle">{{ task.startDate | date }}</td>
+                <td class="align-middle">{{ task.endDate | date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

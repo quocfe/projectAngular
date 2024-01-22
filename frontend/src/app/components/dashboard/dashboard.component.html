@@ -1,3 +1,233 @@
-<p>
-  dashboard works!
-</p>
+<div class="container bg-light mt-5 dashboard">
+  <div *ngIf="data.isAdmin" class="row p-3">
+    <div class="col-lg-3">
+      <div class="leader">
+        <h3 class="heading">Trưởng nhóm</h3>
+        <div class="leader_infor mb-4">
+          <div class="leader-infor_img">
+            <img
+              src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+              alt="avatar"
+              class="img-thumbnail img-fluid"
+            />
+          </div>
+          <div class="leader-infor_name">
+            <h4>Tao là trưởng nhóm</h4>
+          </div>
+        </div>
+      </div>
+      <div class="summary_team mb-4">
+        <h5>Tóm tắt về team</h5>
+        <ul class="bg-white">
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Số lượng thành viên</p>
+            <span>67</span>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Tổng chi phí</p>
+            <span>67</span>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Task đang xử lý</p>
+            <span>67</span>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-0"
+          >
+            <p class="m-0">Dự án sắp triển khai</p>
+            <span>67</span>
+          </li>
+        </ul>
+      </div>
+      <div class="customer">
+        <h5>Khách hàng</h5>
+        <ul class="bg-white">
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Số lượng thành viên</p>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Tổng chi phí</p>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Task đang xử lý</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="project">
+        <h3 class="heading">Tổng thể về dự án</h3>
+        <ul>
+          <li class="d-flex align-items-center justify-content-between">
+            <p>Chi phí dự án</p>
+            <span>$2.123.234</span>
+          </li>
+          <li class="d-flex align-items-center justify-content-between">
+            <p>Hiện tại đã chi</p>
+            <span>$2.123.234</span>
+          </li>
+          <li class="d-flex align-items-center justify-content-between">
+            <p>Còn lại</p>
+            <span>$2.123.234</span>
+          </li>
+        </ul>
+      </div>
+      <div class="user_team">
+        <h3 class="heading">Thành viên nhóm</h3>
+        <ul>
+          <li class="d-flex align-items-center justify-content-between">
+            <p>Khu vực</p>
+            <p>Số lượng nhân viên</p>
+            <p>Nhân viên tạm nghỉ</p>
+          </li>
+          <li class="d-flex align-items-center justify-content-between">
+            <p class="font-weight-bold">East</p>
+            <p class="">20</p>
+            <p class="">4</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <h3 class="heading">Thành viên của team</h3>
+      <app-accordion
+        [zone]="'East'"
+        [employees]="['Employee 1', 'Employee 2', 'Employee 3']"
+      ></app-accordion>
+      <app-accordion
+        [zone]="'West'"
+        [employees]="['Employee 4', 'Employee 5', 'Employee 6']"
+      ></app-accordion>
+      <app-accordion
+        [zone]="'North'"
+        [employees]="['Employee 7', 'Employee 8', 'Employee 9']"
+      ></app-accordion>
+      <app-accordion
+        [zone]="'South'"
+        [employees]="['Employee 10', 'Employee 11', 'Employee 12']"
+      ></app-accordion>
+    </div>
+  </div>
+  <!-- Employee -->
+  <div *ngIf="!data.isAdmin" class="row p-3">
+    <div class="col-lg-4">
+      <div class="leader">
+        <h3 class="heading">Nhân viên</h3>
+        <div class="leader_infor mb-4">
+          <div class="leader-infor_img">
+            <img
+              src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg"
+              alt="avatar"
+              class="img-thumbnail img-fluid"
+            />
+          </div>
+          <div class="leader-infor_name">
+            <h4>Tôi là nhân viên</h4>
+          </div>
+        </div>
+      </div>
+      <div class="summary_team mb-4">
+        <h5>Tóm tắt</h5>
+        <ul class="bg-white">
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Team</p>
+            <span>East</span>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Dự án đang tham gia</p>
+            <span>6</span>
+          </li>
+          <li
+            class="d-flex align-items-center justify-content-between py-2 px-4 border-bottom"
+          >
+            <p class="m-0">Task đang xử lý</p>
+            <span>67</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="project container">
+        <h3 class="heading">Tiến độ dự án đang tham gia</h3>
+        <div class="row mt-5">
+          <div *ngFor="let project of projectsWithEmployee" class="col-4 mb-4">
+            <div
+              class="d-flex flex-column align-items-center justify-content-center shadow rounded-lg p-2"
+            >
+              <h5 class="text-center">{{ project.name }}</h5>
+              <div class="row d-flex justify-content-center">
+                <div class="col-md-12">
+                  <div class="radial-bar">
+                    <div class="radial-bar__circle">
+                      <div
+                        class="radial-bar__mask js-radial-mask"
+                        [style.transform]="
+                          'rotate(' + 1.8 * project.percen + 'deg)'
+                        "
+                      >
+                        <div
+                          class="radial-bar__fill js-radial-fill"
+                          [style.transform]="
+                            'rotate(' + 1.8 * project.percen + 'deg)'
+                          "
+                        ></div>
+                      </div>
+                      <div class="radial-bar__mask">
+                        <div
+                          class="radial-bar__fill js-radial-fill"
+                          [style.transform]="
+                            'rotate(' + 1.8 * project.percen + 'deg)'
+                          "
+                        ></div>
+                        <div
+                          class="radial-bar__fill js-radial-fix"
+                          [style.transform]="
+                            'rotate(' + 3.6 * project.percen + 'deg)'
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="radial-bar__inset">
+                      <div class="radial-bar__percent js-radial-percent">
+                        {{ project.percen }}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control">
+                <a
+                  _ngcontent-ujm-c34=""
+                  class="btn btn-success"
+                  [routerLink]="['/employee/project/' + project._id]"
+                  ><i
+                    _ngcontent-ujm-c34=""
+                    class="fa-regular fa-eye"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

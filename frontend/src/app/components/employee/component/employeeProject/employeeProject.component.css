@@ -1,0 +1,29 @@
+#taskList .card table thead th {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.btn-add {
+  background: transparent;
+  color: #7369f2;
+  border: 1px solid #7369f2;
+  border-radius: 4px;
+}
+
+.btn-add a {
+  color: #7369f2;
+  text-decoration: none;
+}
+
+.btn-add:hover a {
+  color: #ffffff;
+}
+
+.btn-add:hover {
+  color: #ffffff;
+  background: #7369f2;
+}
+
+.btn-add:focus {
+  box-shadow: none;
+}

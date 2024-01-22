@@ -1,0 +1,91 @@
+<div id="taskAdd">
+  <form #taskAddForm="ngForm">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add new task</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="d('Cross click')"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="project">Project</label>
+          <select
+            class="form-control"
+            name="project"
+            id="project"
+            [(ngModel)]="task.project"
+          >
+            <option *ngFor="let project of projects" [value]="project._id">
+              {{ project.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            aria-describedby="namehelpId"
+            placeholder=""
+            [(ngModel)]="task.taskName"
+          />
+          <small id="namehelpId" class="form-text text-muted"
+            >Name is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            name="description"
+            id="description"
+            rows="3"
+            [(ngModel)]="task.description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="startDate">startDate</label>
+          <input
+            type="date"
+            class="form-control"
+            name="startDate"
+            id="startDate"
+            aria-describedby="startDatehelpId"
+            placeholder=""
+            [(ngModel)]="task.startDate"
+          />
+          <small id="startDatehelpId" class="form-text text-muted"
+            >startDate is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="status">status</label>
+          <select
+            class="form-control"
+            name="status"
+            id="status"
+            [(ngModel)]="task.status"
+          >
+            <option>Progress</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="save()">
+          Add new
+        </button>
+      </div>
+    </ng-template>
+    <button class="btn btn-add" (click)="open(content)">Add task</button>
+  </form>
+</div>

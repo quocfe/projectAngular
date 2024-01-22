@@ -1,0 +1,130 @@
+<div id="projectAdd" class="mb-3 mt-5">
+  <form #projectAddForm="ngForm">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add new project</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="d('Cross click')"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            aria-describedby="namehelpId"
+            placeholder=""
+            [(ngModel)]="project.name"
+          />
+          <small id="namehelpId" class="form-text text-muted"
+            >Name is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="startDate">startDate</label>
+          <input
+            type="date"
+            class="form-control"
+            name="startDate"
+            id="startDate"
+            aria-describedby="startDatehelpId"
+            placeholder=""
+            [(ngModel)]="project.startDate"
+          />
+          <small id="startDatehelpId" class="form-text text-muted"
+            >startDate is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="endDate">endDate</label>
+          <input
+            type="date"
+            class="form-control"
+            name="endDate"
+            id="endDate"
+            aria-describedby="endDatehelpId"
+            placeholder=""
+            [(ngModel)]="project.endDate"
+          />
+          <small id="endDatehelpId" class="form-text text-muted"
+            >endDate is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="timesize">Team size</label>
+          <input
+            type="number"
+            class="form-control"
+            name="timesize"
+            id="timesize"
+            aria-describedby="timesizehelpId"
+            placeholder=""
+            [(ngModel)]="project.teamSize"
+          />
+          <small id="timesizehelpId" class="form-text text-muted"
+            >timesize is required</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="budget">budget</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budget"
+            id="budget"
+            aria-describedby="budgethelpId"
+            placeholder=""
+            [(ngModel)]="project.budget"
+          />
+          <small id="budgethelpId" class="form-text text-muted"
+            >budget is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exprense">exprense</label>
+          <input
+            type="number"
+            class="form-control"
+            name="exprense"
+            id="exprense"
+            aria-describedby="exprensehelpId"
+            placeholder=""
+            [(ngModel)]="project.exprense"
+          />
+          <small id="exprensehelpId" class="form-text text-muted"
+            >exprense is required</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="status">status</label>
+          <select
+            class="form-control"
+            name="status"
+            id="status"
+            [(ngModel)]="project.status"
+          >
+            <option>Kick off</option>
+            <option>Developing</option>
+            <option>Delivery</option>
+            <option>Closed</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-add" (click)="save()">
+          Add new
+        </button>
+      </div>
+    </ng-template>
+    <button class="btn btn-add" (click)="open(content)">Add project</button>
+  </form>
+</div>

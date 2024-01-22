@@ -1,0 +1,25 @@
+#employeeAdd .card-header {
+  background: #ffffff;
+}
+
+#employeeAdd .card-header h3 {
+  font-size: 20px;
+  color: #7369f2;
+  text-transform: uppercase;
+}
+
+.btn-add {
+  background: transparent;
+  color: #7369f2;
+  border: 1px solid #7369f2;
+  border-radius: 4px;
+}
+
+.btn-add:hover {
+  color: #ffffff;
+  background: #7369f2;
+}
+
+.btn-add:focus {
+  box-shadow: none;
+}

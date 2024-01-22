@@ -1,0 +1,13 @@
+.accordion .button_show {
+  width: 100%;
+}
+
+.accordion .card .card-body ul {
+  list-style-type: none;
+}
+.accordion .card .card-body ul li {
+  background-color: rgb(244, 245, 246);
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}

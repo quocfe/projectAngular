@@ -1,0 +1,90 @@
+<section id="taskList">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-10 mx-auto">
+        <app-message></app-message>
+        <div *ngIf="tasks?.length === 0 || !tasks" class="m-auto">
+          <h1 *ngIf="tasks != undefined" class="text-center">Task trống</h1>
+        </div>
+        <app-task-add
+          *ngIf="!data.isAdmin"
+          (savingFinished)="finishAndAlert($event)"
+        ></app-task-add>
+        <div
+          class="card mt-2 overflow-hidden"
+          *ngIf="tasks && tasks?.length != 0"
+        >
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Name task</th>
+                <th>Project</th>
+                <th>Status</th>
+                <th *ngIf="data.isAdmin">Assigned To</th>
+                <th *ngIf="!data.isAdmin"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks" [ngClass]="getTaskRowClass(task)">
+                <td class="align-middle">{{ task.taskName }}</td>
+                <td class="align-middle">{{ task.project || "null" }}</td>
+                <td class="align-middle">{{ task.status }}</td>
+
+                <td *ngIf="data.isAdmin" class="align-middle">
+                  {{ task.employee || "null" }}
+                </td>
+
+                <td
+                  *ngIf="!data.isAdmin"
+                  class="align-middle d-flex justify-content-around"
+                >
+                  <a class="btn btn-success">
+                    <i class="fa-regular fa-eye"></i>
+                  </a>
+                  <app-task-edit
+                    [id]="task._id"
+                    (updateFinished)="finishAndAlert($event)"
+                  ></app-task-edit>
+                  <a
+                    (click)="
+                      confirmDeleteTask(content, task._id, task.taskName)
+                    "
+                    class="btn btn-danger"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ confirmMessage }}</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="deleteProject()"
+      >
+        Yes
+      </button>
+      <button type="button" class="btn btn-dark" (click)="c('Close click')">
+        No
+      </button>
+    </div>
+  </ng-template>
+</section>

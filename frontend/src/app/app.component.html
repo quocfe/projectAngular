@@ -1,23 +1,2 @@
-<div class="container">
-  <header class="row">Header</header>
-  <nav class="row">
-    <nav class="nav justify-content-center">
-      <a
-        class="nav-link"
-        [routerLink]="['/productlist']"
-        routerLinkActive="router-link-active"
-        >Product List</a
-      >
-      <a class="nav-link" [routerLink]="['/productdetail']">Product Details</a>
-      <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-      <a class="nav-link" [routerLink]="['/login']">Login</a>
-    </nav>
-  </nav>
-  <section class="row">
-    <div class="col">
-      <!-- <app-product-detail></app-product-detail>
-      <app-product-list></app-product-list> -->
-      <router-outlet></router-outlet>
-    </div>
-  </section>
-</div>
+<app-header></app-header>
+<router-outlet></router-outlet>

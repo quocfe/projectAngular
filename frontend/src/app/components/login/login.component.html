@@ -1,57 +1,89 @@
-<div class="row mt-5">
-  <div class="col-6 offset-3">
-    <div class="card">
-      <div class="card-header">
-        <h1 class="text-center">Login</h1>
+<!-- component -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-gray-100 flex justify-center items-center h-screen">
+      <!-- Left: Image -->
+      <div class="w-1/2 h-screen hidden lg:block">
+        <img
+          src="https://img.freepik.com/free-vector/privacy-policy-concept-illustration_114360-7853.jpg?w=1060&t=st=1705070408~exp=1705071008~hmac=396966a61c5210edb5fceb60f4d9a64242b6fedeef2bfc21a1cc67fc45abe5df"
+          alt="Placeholder Image"
+          class="object-cover w-full h-full"
+        />
       </div>
-      <form
-        class="card-body"
-        id="loginForm"
-        #loginForm="ngForm"
-        (ngSubmit)="onSubmit()"
-      >
-        <div class="form-group">
-          <label for="">Email</label>
-          <input
-            type="text"
-            class="form-control"
-            ngModel
-            name="email"
-            required
-            email
-            #email="ngModel"
-            aria-describedby="emailhelpId"
-            placeholder="email"
-          />
-          <small
-            *ngIf="!email?.valid && (email?.dirty || email.touched)"
-            id="emailhelpId"
-            class="form-text text-muted"
-            >Email is invalid</small
+      <!-- Right: Login Form -->
+      <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
+        <app-message></app-message>
+        <h1 class="text-2xl font-semibold mb-4">Login</h1>
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <!-- Username Input -->
+          <div class="mb-4">
+            <label for="username" class="block text-gray-600">Email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              aria-describedby="emailHelpId"
+              placeholder="abc@gmail.com"
+              [(ngModel)]="employee.email"
+              #email="ngModel"
+              required
+              class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+            />
+            <small
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              id="emailHelpId"
+              class="form-text text-danger"
+              >Email is required</small
+            >
+          </div>
+          <!-- Password Input -->
+          <div class="mb-4">
+            <label for="password" class="block text-gray-600">Password</label>
+            <input
+              type="password"
+              name="password"
+              class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              id="password"
+              placeholder="password"
+              [(ngModel)]="employee.password"
+              #password="ngModel"
+              required
+              minlength="8"
+            />
+            <small
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              id="passwordHelpId"
+              class="form-text text-danger"
+              >Password is required</small
+            >
+          </div>
+
+          <!-- Login Button -->
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
           >
-        </div>
-        <div class="form-group">
-          <label for="">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            ngModel
-            name="password"
-            #password="ngModel"
-            required
-            minlength="6"
-            aria-describedby="passwordhelpId"
-            placeholder="********"
-          />
-          <small
-            *ngIf="!password?.valid && (password?.dirty || password.touched)"
-            id="passwordhelpId"
-            class="form-text text-muted"
-            >Password is invalid</small
-          >
-        </div>
-        <button class="btn btn-primary">Login</button>
-      </form>
+            Login
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+  </body>
+</html>

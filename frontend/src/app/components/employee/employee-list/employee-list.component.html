@@ -1,0 +1,98 @@
+<section id="employeeList">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+
+        <div *ngIf="employees?.length === 0 || !employees" class="m-auto">
+          <h1 *ngIf="employees != undefined">Danh sách trống</h1>
+        </div>
+        <button class="btn btn-add mb-3">
+          <a [routerLink]="['/employee/add']">Add employee</a>
+        </button>
+        <div class="card" *ngIf="employees && employees?.length != 0">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees">
+                <td class="align-middle">{{ employee.name }}</td>
+                <td class="align-middle">{{ employee.email }}</td>
+                <td class="align-middle">{{ employee.status }}</td>
+                <td class="align-middle">{{ employee.role }}</td>
+
+                <td class="align-middle">
+                  <a
+                    [routerLink]="['/employee/edit/' + employee._id]"
+                    class="btn btn-primary"
+                  >
+                    <i class="fa-regular fa-pen-to-square"></i
+                  ></a>
+                  {{ "" }}
+
+                  <button
+                    (click)="
+                      confirmDeleteProject(content, employee._id, employee.name)
+                    "
+                    class="btn btn-danger"
+                    [disabled]="employee.role === 'Leader' ? true : false"
+                  >
+                    <i
+                      [class]="
+                        employee.status === 'Resigned'
+                          ? 'fa-solid fa-handshake'
+                          : 'fa-solid fa-handshake-slash'
+                      "
+                    ></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>{{ confirmMessage }}</p>
+    </div>
+    <div class="modal-footer">
+      <button
+        *ngIf="!checkExistTask"
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="delete(true)"
+      >
+        Yes
+      </button>
+      <button
+        *ngIf="checkExistTask"
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="delete(false)"
+      >
+        Yes
+      </button>
+      <button type="button" class="btn btn-dark" (click)="c('Close click')">
+        No
+      </button>
+    </div>
+  </ng-template>
+</section>

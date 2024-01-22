@@ -1,0 +1,173 @@
+<section id="employeeEdit">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+        <form #employeeForm="ngForm">
+          <a class="btn btn-add mb-2" (click)="back()">Back</a>
+          <div class="card">
+            <div class="card-header">
+              <h3>Edit employee</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  aria-describedby="namehelpId"
+                  placeholder=""
+                  [(ngModel)]="employee.name"
+                  #name="ngModel"
+                  required
+                />
+                <small
+                  *ngIf="name.invalid && (name.dirty || name.touched)"
+                  id="namehelpId"
+                  class="form-text text-danger"
+                  >Name is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  placeholder="password"
+                  aria-describedby="passwordhelpId"
+                  [(ngModel)]="employee.password"
+                  #password="ngModel"
+                  required
+                />
+                <small
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                  id="passwordhelpId"
+                  class="form-text text-danger"
+                  >Password is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  aria-describedby="emailHelpId"
+                  placeholder="email"
+                  [(ngModel)]="employee.email"
+                  #email="ngModel"
+                  required
+                />
+                <small
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                  id="emailHelpId"
+                  class="form-text text-danger"
+                  >Email is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="phone"
+                  id="phone"
+                  aria-describedby="phoneHelpId"
+                  placeholder="phone"
+                  [(ngModel)]="employee.phone"
+                  required
+                  #phone="ngModel"
+                />
+                <small
+                  *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                  id="phoneHelpId"
+                  class="form-text text-danger"
+                  >Phone is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="zone">Zone</label>
+                <select
+                  class="form-control"
+                  name="zone"
+                  id="zone"
+                  [(ngModel)]="employee.zone"
+                  required
+                  #zone="ngModel"
+                >
+                  <option value="" disabled>Select a zone</option>
+                  <option>East</option>
+                  <option>West</option>
+                  <option>South</option>
+                  <option>North</option>
+                </select>
+                <small
+                  *ngIf="zone.invalid && (zone.dirty || zone.touched)"
+                  class="form-text text-danger"
+                  >Zone is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select
+                  class="form-control"
+                  name="status"
+                  id="status"
+                  [(ngModel)]="employee.status"
+                  #status="ngModel"
+                  required
+                >
+                  <option value="" disabled>Select a status</option>
+                  <option>Working</option>
+                  <option>Resigned</option>
+                </select>
+                <small
+                  *ngIf="status.invalid && (status.dirty || status.touched)"
+                  class="form-text text-danger"
+                  >Status is required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="role">Role</label>
+                <select
+                  class="form-control"
+                  name="role"
+                  id="role"
+                  [(ngModel)]="employee.role"
+                  #role="ngModel"
+                  required
+                >
+                  <option value="" disabled>Select a role</option>
+                  <option>Leader</option>
+                  <option>Employee</option>
+                </select>
+                <small
+                  *ngIf="role.invalid && (role.dirty || role.touched)"
+                  class="form-text text-danger"
+                  >Role is required</small
+                >
+              </div>
+            </div>
+
+            <div class="card-footer text-muted">
+              <button (click)="update()" class="btn btn-add">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
