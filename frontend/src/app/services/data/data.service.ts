@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationStart,
+  Router,
+  NavigationEnd,
+} from '@angular/router';
 import { Employee } from 'src/app/models/employee';
 import { RestApiService } from './../rest-api/rest-api.service';
 import { Api } from 'src/app/constant/api';
@@ -23,10 +28,11 @@ export class DataService {
   }
 
   async getProfile() {
-    console.log('get profile is running');
     const token = localStorage.getItem('token');
     const employeeID = localStorage.getItem('employeeId');
-    if (!token || !employeeID) return;
+    if (!token || !employeeID) {
+      this.router.navigate(['/auth/login']);
+    }
     const response = await this.rest.getOne(Api.EMPLOYEE, employeeID);
     let value = response as { employee: Employee };
     this.isStatus = value.employee.status;
